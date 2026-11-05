@@ -1,0 +1,41 @@
+name: Update news feed
+
+on:
+  schedule:
+    - cron: "17 * * * *"   # every hour, at 17 minutes past
+  workflow_dispatch:        # adds a "Run workflow" button for manual runs
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-feed
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install reader
+        run: pip install beautifulsoup4
+
+      - name: Build feed from the news page
+        run: python make_feed.py
+
+      - name: Save changes
+        run: |
+          git config user.name "news-feed-bot"
+          git config user.email "news-feed-bot@users.noreply.github.com"
+          git add docs
+          if git diff --cached --quiet; then
+            echo "Nothing new."
+          else
+            git commit -m "Update news feed"
+            git push
+          fi
