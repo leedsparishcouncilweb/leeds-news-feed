@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Road closures, roadworks and diversion information for Leeds village, Kent. Check the official One.Network map and parish notices.">
   <title>Road Closures & Roadworks | Leeds Parish Council</title>
+  <script>
+    // Use ?embed=1 for a compact view inside the Hugo Fox iframe.
+    if (new URLSearchParams(window.location.search).get('embed') === '1') {
+      document.documentElement.classList.add('embedded');
+    }
+  </script>
   <style>
     :root { --green:#163e37; --deep:#0d302b; --mint:#dfece6; --cream:#f6f7f3; --card:#fff; --ink:#21332e; --muted:#5b6b65; --line:#dfe5df; --gold:#f6c65f; --amber:#b96b19; --red:#a5362b; --blue:#236f92; --shadow:0 10px 40px rgba(17,50,42,.06); }
     * {box-sizing:border-box} html {scroll-behavior:smooth} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.55}
@@ -20,6 +26,20 @@
     @media(max-width:900px){.hero-mark{display:none}.layout{grid-template-columns:1fr}.quick{grid-template-columns:repeat(3,1fr)}.map-frame{height:370px}.item-list{min-height:unset;max-height:none}.nav{display:none}}
     @media(max-width:640px){.wrap{width:min(100% - 28px,1160px)}.topline{font-size:10px}.brandbar .wrap{padding:14px 0}.crest{width:42px;height:42px;font-size:21px}.brand strong{font-size:16px}.hero .wrap{padding:38px 0 41px}.hero h1{font-size:37px}.hero p{font-size:14px}.quick{grid-template-columns:1fr;gap:10px}.quick article{padding:15px 17px}.quick h2{font-size:17px}.main{padding-top:18px}.section-head{display:block}.section-head .button{margin-top:14px}.map-frame{height:310px}.map-actions .button{width:100%}.info-grid{grid-template-columns:1fr}.footer .wrap{display:block}.footer .footer-links{margin-top:14px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    /* Embedded view for Hugo Fox: retain content, omit duplicate site chrome. */
+    .embedded .topline,.embedded .brandbar,.embedded .footer{display:none}
+    .embedded .hero .wrap{padding:22px 0 24px}
+    .embedded .hero h1{font-size:clamp(26px,3.6vw,38px);margin:4px 0 8px}
+    .embedded .hero h1 br{display:none}
+    .embedded .hero p{font-size:14px}
+    .embedded .hero-mark,.embedded .quick{display:none}
+    .embedded .main{padding:18px 0 28px}
+    .embedded .wrap{width:min(1160px,calc(100% - 24px))}
+    @media(max-width:640px){
+      .embedded .hero .wrap{padding:18px 0 20px}
+      .embedded .hero h1{font-size:29px}
+      .embedded .main{padding:14px 0 22px}
+    }
   </style>
 </head>
 <body>
