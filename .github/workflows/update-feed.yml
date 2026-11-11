@@ -3,7 +3,11 @@ name: Update news feed
 on:
   schedule:
     - cron: "17 * * * *"   # every hour, at 17 minutes past
-  workflow_dispatch:        # adds a "Run workflow" button for manual runs
+  workflow_dispatch:        # manual run from Actions
+  push:
+    paths:
+      - "make_feed.py"
+      - ".github/workflows/update-feed.yml"
 
 permissions:
   contents: write
@@ -28,14 +32,29 @@ jobs:
       - name: Build feed from the news page
         run: python make_feed.py
 
-      - name: Save changes
+      - name: Save changes safely
         run: |
           git config user.name "news-feed-bot"
           git config user.email "news-feed-bot@users.noreply.github.com"
           git add docs
           if git diff --cached --quiet; then
             echo "Nothing new."
-          else
-            git commit -m "Update news feed"
-            git push
+            exit 0
           fi
+          git commit -m "Update news feed"
+          # A separate site edit may have reached main during this run.
+          # Refresh the branch before pushing, retrying if necessary.
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              echo "Could not rebase feed; next scheduled run will retry."
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push raced with another site edit (attempt $attempt)."
+            sleep 3
+          done
+          exit 1
