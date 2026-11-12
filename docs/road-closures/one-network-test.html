@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>One.Network embedding test | Leeds Parish Council</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#f3f5f2;color:#17352f;font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+  main{width:min(1100px,calc(100% - 24px));margin:25px auto 40px}
+  h1{font-size:clamp(24px,4vw,36px);margin:0 0 8px}
+  p{line-height:1.5;color:#405b50}
+  .note{padding:12px 15px;background:#fff7db;border-left:4px solid #aa7b12;border-radius:6px;margin:16px 0}
+  .map{height:min(72vh,660px);min-height:440px;background:#e3eae6;overflow:hidden;border:1px solid #bdcac2;border-radius:10px}
+  iframe{width:100%;height:100%;border:0;display:block}
+  a{color:#175b4c;font-weight:650}
+  .links{display:flex;flex-wrap:wrap;gap:15px;margin:18px 0}
+  .btn{background:#18453d;color:#fff;padding:11px 15px;border-radius:7px;text-decoration:none}
+  .small{font-size:13px}
+  @media(max-width:600px){main{margin:15px auto 25px}.map{height:60vh;min-height:350px}}
+</style>
+</head>
+<body>
+<main>
+<h1>One.Network map embedding test</h1>
+<p>Leeds village, Kent (ME17 1RU). This is a technical test, not the parish council's published road closure list.</p>
+<div class="note"><strong>Test:</strong> Can you see and interact with the One.Network map below? If you see an error, a blank frame, or a sign-in/consent screen that does not resolve, the direct iframe may be blocked. Use the link to open the map separately.</div>
+<div class="map">
+  <iframe src="https://one.network/uk/kent?lat=51.246447&amp;lng=0.60596&amp;zoom=14" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="Trial One.Network map centred on Leeds, Kent" allowfullscreen></iframe>
+</div>
+<div class="links">
+<a class="btn" href="https://one.network/uk/kent?lat=51.246447&amp;lng=0.60596&amp;zoom=14" target="_blank" rel="noopener noreferrer">Open map directly</a>
+<a href="./?embed=1">Return to Leeds road-closures page</a>
+</div>
+<p class="small">Source: one.network. This trial does not extract any information from the embedded page and is not connected to the Street Manager open data service. If direct embedding is blocked, an official map embed may require authorisation from one.network.</p>
+</main>
+</body>
+</html>
